@@ -1,11 +1,11 @@
-﻿# libcubwt
+# libcubwt
 
-The libcubwt is a library for fast (see [Benchmarks](#benchmarks) below) GPU-based Burrows-Wheeler transform construction on the CUDA platform using prefix doubling + Skew/DC3 approach as described in the following papers:
+The libcubwt is a library for fast (see [Benchmarks](#benchmarks) below) GPU-based Burrows-Wheeler transform construction and inversion on the CUDA platform using prefix doubling + Skew/DC3 approach as described in the following papers:
 * Vitaly Osipov, *Parallel Suffix Array Construction for Shared Memory Architectures*, 2012
 * Leyuan Wang, Sean Baxter, and John D. Owens *Fast Parallel Suffix Array on the GPU*, 2015
 * Florian Büren, Daniel Jünger, Robin Kobus, Christian Hundt, Bertil Schmidt *Suffix Array Construction on Multi-GPU Systems*, 2019
 
-Copyright (c) 2022-2023 Ilya Grebnov <ilya.grebnov@gmail.com>
+Copyright (c) 2022-2024 Ilya Grebnov <ilya.grebnov@gmail.com>
 
 ## Introduction
 The libcubwt provides simple API to construct Burrows-Wheeler transform from a given string over constant-size alphabet using 20.5n bytes of GPU memory.
@@ -20,6 +20,8 @@ The libcubwt provides simple API to construct Burrows-Wheeler transform from a g
 The libcubwt is released under the [Apache License Version 2.0](LICENSE "Apache license") and is considered suitable for production use. However, no warranty or fitness for a particular purpose is expressed or implied.
 
 ## Changes
+* January 24, 2024 (1.6.0)
+  * Inverse Burrows-Wheeler transform.
 * March 24, 2023 (1.5.0)
   * Reduced memory usage and improved performance.
 * February 10, 2023 (1.0.0)
@@ -50,6 +52,18 @@ The libcubwt is released under the [Apache License Version 2.0](LICENSE "Apache 
     * @return The primary index if no error occurred, libcubwt error code otherwise.
     */
     int64_t libcubwt_bwt(void * device_storage, const uint8_t * T, uint8_t * L, int64_t n);
+
+    /**
+    * Reconstructs the original string from a given burrows-wheeler transformed string (BWT) with primary index.
+    * @param device_storage The previously allocated storage on the CUDA device.
+    * @param T [0..n-1] The input string.
+    * @param U [0..n-1] The output string (can be T).
+    * @param n The length of the given string.
+    * @param freq [0..255] The input symbol frequency table (can be NULL).
+    * @param i The primary index.
+    * @return LIBCUBWT_NO_ERROR if no error occurred, libcubwt error code otherwise.
+    */
+    int64_t libcubwt_unbwt(void * device_storage, const uint8_t * T, uint8_t * U, int64_t n, const int32_t * freq, int32_t i);
 ```
 
 ---
