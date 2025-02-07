@@ -5,7 +5,7 @@ The libcubwt is a library for fast (see [Benchmarks](#benchmarks) below) GPU-bas
 * Leyuan Wang, Sean Baxter, and John D. Owens *Fast Parallel Suffix Array on the GPU*, 2015
 * Florian Büren, Daniel Jünger, Robin Kobus, Christian Hundt, Bertil Schmidt *Suffix Array Construction on Multi-GPU Systems*, 2019
 
-Copyright (c) 2022-2024 Ilya Grebnov <ilya.grebnov@gmail.com>
+Copyright (c) 2022-2025 Ilya Grebnov <ilya.grebnov@gmail.com>
 
 ## Introduction
 The libcubwt provides simple API to construct Burrows-Wheeler transform from a given string over constant-size alphabet using 20.5n bytes of GPU memory.
@@ -20,6 +20,8 @@ The libcubwt provides simple API to construct Burrows-Wheeler transform from a g
 The libcubwt is released under the [Apache License Version 2.0](LICENSE "Apache license") and is considered suitable for production use. However, no warranty or fitness for a particular purpose is expressed or implied.
 
 ## Changes
+* January 24, 2025 (1.6.1)
+  * Support for Blackwell architecture.
 * January 24, 2024 (1.6.0)
   * Inverse Burrows-Wheeler transform.
 * March 24, 2023 (1.5.0)
