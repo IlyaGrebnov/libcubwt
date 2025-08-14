@@ -20,6 +20,8 @@ The libcubwt provides simple API to construct Burrows-Wheeler transform from a g
 The libcubwt is released under the [Apache License Version 2.0](LICENSE "Apache license") and is considered suitable for production use. However, no warranty or fitness for a particular purpose is expressed or implied.
 
 ## Changes
+* August 13, 2025 (1.6.3)
+  * Support for CUDA Toolkit 13.0.
 * May 5, 2025 (1.6.2)
   * Support for CUDA Toolkit 12.9 & CCCL 3.0.
 * January 24, 2025 (1.6.1)
